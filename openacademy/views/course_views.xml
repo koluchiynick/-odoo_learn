@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+        <!-- Basic views -->
+        <!-- List -->
+        <record model="ir.ui.view" id="course_list">
+            <field name="name">openacademy.course.list</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <tree string="Courses list">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="responsible"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form -->
+        <record model="ir.ui.view" id="course_form">
+            <field name="name">openacademy.course.form</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <form string="Course form">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <separator string="Details"/>
+                    <group>
+                        <field name="responsible"/>
+                    </group>
+                    <group>
+                        <notebook colspan="2">
+                            <page string="Description">
+                                <field name="description" nolabel="1"/>
+                            </page>
+                            <page string="Sessions">
+                                <field name="sessions" string="Sessions"/>
+                            </page>
+                        </notebook>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- search -->
+        <record model="ir.ui.view" id="course_search" >
+            <field name="name">openacademy.course.search</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <filter name="my_courses" string="My courses"
+                            domain="[('responsible', '=', uid)]"/>
+                    <group string="Group By">
+                        <filter name="by_responsible" string="Responsible"
+                                context="{'group_by': 'responsible'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- END Basic views -->
+
+
+        <!-- Actions and Menus -->
+        <record model="ir.actions.act_window" id="action_open_course" >
+            <field name="name">Course</field>
+            <field name="res_model">openacademy.course</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- END Actions and Menus -->
+    </data>
+</odoo>

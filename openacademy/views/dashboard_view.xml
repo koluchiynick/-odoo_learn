@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="dashboard_view">
+        <field name="name">Dashboard</field>
+        <field name="model">board.board</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard">
+                <board style="1-2">
+                    <column>
+                        <action string="Courses list"
+                                name="%(action_open_course)d"/>
+                    </column>
+                    <column>
+                        <action string="Session's graph"
+                                name="%(action_session_graph)d"/>
+                        <action string="Session's calendar"
+                                name="%(action_session_calendar)d"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="open_dashboard_action">
+        <field name="name">Dashboard</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="dashboard_view"/>
+    </record>
+
+
+
+
+</odoo>
