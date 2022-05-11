@@ -9,8 +9,8 @@ class Course(models.Model):
 
     name = fields.Char(string='Title', required=True)
     description = fields.Text(string='Description')
-    responsible = fields.Many2one('res.users', string='Responsible')
-    sessions = fields.One2many(string="Sessions", comodel_name='openacademy.sessions', inverse_name='course')
+    responsible_id = fields.Many2one('res.users', string='Responsible')
+    session_ids = fields.One2many(string="Session", comodel_name='openacademy.session', inverse_name='course_id')
 
     _sql_constraints = [
         ('name_description',

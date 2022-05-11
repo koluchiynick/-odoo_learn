@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <menuitem
+                id="openacademy.menu_root"
+                name="Openacademy"
+                sequence="0"/>
+
+        <menuitem
+                id="menu_dashboard"
+                parent="openacademy.menu_root"
+                action="dashboard_action"
+                sequence="1"/>
+
+        <menuitem
+                id="openacademy.course"
+                name="Course"
+                parent="openacademy.menu_root"
+                action="course_action"
+                sequence="2"/>
+
+        <menuitem
+                id="openacademy.session"
+                name="Session"
+                parent="openacademy.menu_root"
+                action="session_action"
+                sequence="3"/>
+
+        <menuitem
+                id="openacademy.partner"
+                name="Partner"
+                parent="openacademy.menu_root"
+                action="partner_action"
+                sequence="4"/>
+
+    </data>
+</odoo>

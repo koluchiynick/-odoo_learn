@@ -1,11 +1,11 @@
 <odoo>
     <record id="action_session_report" model="ir.actions.report">
         <field name="name">Session report</field>
-        <field name="model">openacademy.sessions</field>
+        <field name="model">openacademy.session</field>
         <field name="report_type">qweb-html</field>
         <field name="report_name">openacademy.action_session_report</field>
         <field name="report_file">openacademy.session_report</field>
-        <field name="binding_model_id" ref="model_openacademy_sessions"/>
+        <field name="binding_model_id" ref="model_openacademy_session"/>
         <field name="binding_type">report</field>
     </record>
 
@@ -26,7 +26,7 @@
 
                         <h3>Attendees:</h3>
                         <ul>
-                            <t t-foreach="doc.attendees" t-as="attendee">
+                            <t t-foreach="doc.attendee_ids" t-as="attendee">
                                 <li>
                                     <span t-field="attendee.name"/>
                                 </li>

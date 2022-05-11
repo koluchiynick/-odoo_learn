@@ -28,19 +28,19 @@
 
     # always loaded
     'data': [
-        'security/user_groups.xml',
+        'security/openacademy_groups.xml',
+        'security/course_security.xml',
         'security/ir.model.access.csv',
         'wizard/create_attendees_view.xml',
         'views/course_views.xml',
-        'views/sessions_views.xml',
+        'views/session_views.xml',
         'views/partner_views.xml',
-        'views/views.xml',
-        'views/templates.xml',
-        'report/session_report.xml',
         'views/dashboard_view.xml',
+        'views/openacademy_menus.xml',
+        'report/session_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
-        'demo/demo.xml',
+        'data/course_demo.xml',
     ],
 }

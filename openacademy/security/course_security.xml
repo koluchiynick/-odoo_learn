@@ -1,14 +1,6 @@
 <odoo>
     <data>
-        <record id="openacademy_session_read" model="res.groups">
-            <field name="name">OpenAcademy / Session Read</field>
-        </record>
-
-        <record id="openacademy_manager" model="res.groups">
-            <field name="name">OpenAcademy / Manager</field>
-        </record>
-
-        <record id="write_responsible_only" model="ir.rule">
+        <record id="openacademy_course_rule_write_responsible_only" model="ir.rule">
             <field name="name">All users may to modify it if no responsible</field>
             <field name="model_id" ref="openacademy.model_openacademy_course"/>
             <field name="groups" eval="[(4, ref('openacademy.openacademy_manager'))]"/>
