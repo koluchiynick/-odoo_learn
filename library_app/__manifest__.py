@@ -3,13 +3,13 @@
     'name': "Library Management",
     'summary': "Manage library catalog and book lending.",
     'author': "Mikola Ostroukh",
-    'license': "AGPL-3"
+    'license': 'LGPL-3',
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Services/Library',
     'version': '15.0.1.0.0',
     # any module necessary for this one to work correctly
     'depends': ['base'],
@@ -17,9 +17,11 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/library_security.xml',
+        'security/ir.model.access.csv',
+        'views/book_view.xml',
+        'views/library_menu.xml',
+        "views/book_list_template.xml",
     ],
     # only loaded in demonstration mode
     'demo': [
