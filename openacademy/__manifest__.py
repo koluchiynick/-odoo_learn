@@ -20,7 +20,6 @@
     'version': '0.1',
     'installable': True,
     'application': True,
-    'sequence': 1,
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly

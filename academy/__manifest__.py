@@ -19,7 +19,6 @@
     'category': 'Uncategorized',
     'version': '0.1',
     'application': True,
-    'sequence': 1,
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
