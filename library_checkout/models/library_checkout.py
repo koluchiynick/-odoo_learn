@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from odoo import api, exceptions, fields, models
 
 
@@ -42,6 +40,9 @@ class Checkout(models.Model):
     def _group_expand_stage_id(self, stages, domain, order):
         return stages.search([], order=order)
     
+    name = fields.Char(string="Title")
+    member_image = fields.Binary(related='member_id.image_128')
+    
     member_id = fields.Many2one("library.member", required=True)
     user_id = fields.Many2one("res.users", "Librarian", default = lambda s: s.env.user)
     request_date = fields.Date(
@@ -57,6 +58,26 @@ class Checkout(models.Model):
     
     checkout_date = fields.Date(readonly=True)
     close_date = fields.Date(readonly=True)
+    
+    count_checkouts = fields.Integer(compute="_compute_count_checkouts")
+    
+    def _compute_count_checkouts(self):
+        members = self.mapped("member_id")
+        domain = [
+            ("member_id", "=", members.ids),
+            ("state", "not in", ["done", "cancel"]),
+        ]
+        raw = self.read_group(domain, ["id:count"], ["member_id"])
+        data = {x["member_id"][0]: x["member_id_count"] for x in raw}
+        for checkout in self:
+            checkout.count_checkouts = data.get(checkout.member_id.id, 0)
+        
+    num_books = fields.Integer(compute="_compute_num_books", store=True)
+    
+    @api.depends("line_ids")
+    def _compute_num_books(self):
+        for book in self:
+            book.num_books = len(book.line_ids)
     
     @api.model
     def create(self, vals):
@@ -78,4 +99,11 @@ class Checkout(models.Model):
                 self.with_context(_checkout_write=True).write({"checkout_date": fields.Date.today()})
             if new_state != old_state and new_state == "done":
                 self.with_context(_checkout_write=True).write({"close_date": fields.Date.today()})
+        return True
+    
+    def button_done(self):
+        Stage = self.env["library.checkout.stage"]
+        done_stage = Stage.search([("stage", "=", "done")], limit=1)
+        for checkout in self:
+            checkout.stage_id = done_stage
         return True

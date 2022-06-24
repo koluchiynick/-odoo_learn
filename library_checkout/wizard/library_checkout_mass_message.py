@@ -19,7 +19,7 @@ class CheckoutMassMessage(models.TransientModel):
     def default_get(self, field_names):
         defaults_dict = super().default_get(field_names)
         checkout_ids = self.env.context["active_ids"]
-        defaults_dict["checkout_ids"] = checkout_ids
+        defaults_dict["checkout_ids"] = [(6, 0, checkout_ids)]
         return defaults_dict
     
     def button_send(self):
