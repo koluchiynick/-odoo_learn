@@ -4,7 +4,7 @@
     <record id="action_library_checkout" model="ir.actions.act_window">
         <field name="name">Checkout</field>
         <field name="res_model">library.checkout</field>
-        <field name="view_mode">tree,form,activity,calendar,pivot,graph</field>
+        <field name="view_mode">kanban,tree,form,activity,calendar,pivot,graph</field>
     </record>
 
     <menuitem
